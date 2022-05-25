@@ -2,9 +2,10 @@
   "name": "productivity",
   "version": "1.0.0",
   "description": "Welcome to my productivity-js repo!",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   }

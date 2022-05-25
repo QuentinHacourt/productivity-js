@@ -4,7 +4,7 @@ let mode = 25;
 let secondsLeft = 0;
 
 
-const start = async () => {
+export const start = async () => {
   isRunning = true;
   document.getElementById("start-button").disabled = true;
   document.getElementById("pause-button").disabled = false;
@@ -104,3 +104,13 @@ const delay = async (milliseconds) => {
         setTimeout(resolve, milliseconds);
     });
 }
+
+
+// get buttons and make them work
+document.getElementById("start-button").addEventListener("click", start);
+document.getElementById("pause-button").addEventListener("click", pause);
+document.getElementById("reset-button").addEventListener("click", reset);
+
+document.getElementById("pomodoro-button").addEventListener("click", setPomodoroMode);
+document.getElementById("short-break-button").addEventListener("click", setShortBreakMode);
+document.getElementById("long-break-button").addEventListener("click", setLongBreakMode);
