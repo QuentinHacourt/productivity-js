@@ -65,16 +65,6 @@ const printMessage = async (message) => {
   timer.appendChild(timerData);
 }
 
-const smallBreak = async () => {
-  loop(5, 0);
-  await printMessage("Time to go back to work!");
-}
-
-const longBreak = async () => {
-  loop(15, 0);
-  await printMessage("Time to go back to work!");
-}
-
 const loop = async () => {
   while (isRunning) {
       if (secondsLeft === 0 && minutesLeft === 0){
@@ -105,8 +95,6 @@ const delay = async (milliseconds) => {
     });
 }
 
-
-// get buttons and make them work
 document.getElementById("start-button").addEventListener("click", start);
 document.getElementById("pause-button").addEventListener("click", pause);
 document.getElementById("reset-button").addEventListener("click", reset);
