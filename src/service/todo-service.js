@@ -1,51 +1,63 @@
-let todoList = [
-  {
-    id: 1,
-    title: "first task",
-    description: "this is the first task",
-  },
-  {
-    id: 2,
-    title: "second task",
-    description: "this is the second task",
-  },
-  {
-    id: 3,
-    title: "third task",
-    description: "this is the last task",
-  },
-];
-
-export const addItem = async () => {
-
-}
-export const deleteItem = async(id) => {
-  let count = 0;
-  for (const item of todoList) {
-    if (item.id === id) {
-      todoList.splice(count, 1);
-    }
-    count++;
+export class TodoList {
+  constructor() {
+    this.items = [
+      {
+        id: 1,
+        title: "first task",
+        description: "this is the first task",
+      },
+      {
+        id: 2,
+        title: "second task",
+        description: "this is the second task",
+      },
+      {
+        id: 3,
+        title: "third task",
+        description: "this is the last task",
+      },
+    ]
   }
-}
-export const editItem = async (item) => {
-  let count = 0;
-  for (const i of todoList) {
-    if (item.id === i.id) {
-      todoList[count] = item;
-    }
-    count++;
+
+  async addItem(item) {
+    this.items.push({
+      id: this.items.length+1,
+      title: item.title,
+      description: item.description,
+    });
+
+
   }
-}
 
-export const getAllItems = async () => {
-  return todoList;
-}
+  async deleteItem(id) {
+    let count = 0;
+    for (const item of this.items) {
+      if (item.id === id) {
+        this.items.splice(count, 1);
+      }
+      count++;
+    }
+  }
 
-export const getItem = async(id) => {
-  for (const i of todoList) {
-    if (i.id === id) {
-      return i
+  async editItem(item) {
+    let count = 0;
+    for (const i of this.items) {
+      if (item.id === i.id) {
+        this.items[count] = item;
+      }
+      count++;
+    }
+  }
+
+  async getAllItems() {
+    return this.items;
+  }
+
+  async getItem(id) {
+    for (const i of this.items) {
+      if (i.id === id) {
+        return i
+      }
     }
   }
 }
