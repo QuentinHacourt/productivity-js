@@ -4,7 +4,7 @@ let mode = 25;
 let secondsLeft = 0;
 
 
-export const start = async () => {
+const start = async () => {
   isRunning = true;
   document.getElementById("start-button").disabled = true;
   document.getElementById("pause-button").disabled = false;
@@ -90,9 +90,9 @@ const timeToString = async (time) => {
 }
 
 const delay = async (milliseconds) => {
-    return new Promise(resolve => {
-        setTimeout(resolve, milliseconds);
-    });
+  return new Promise(resolve => {
+    setTimeout(resolve, milliseconds);
+  });
 }
 
 document.getElementById("start-button").addEventListener("click", start);
