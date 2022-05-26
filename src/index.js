@@ -65,16 +65,6 @@ const printMessage = async (message) => {
   timer.appendChild(timerData);
 }
 
-const smallBreak = async () => {
-  loop(5, 0);
-  await printMessage("Time to go back to work!");
-}
-
-const longBreak = async () => {
-  loop(15, 0);
-  await printMessage("Time to go back to work!");
-}
-
 const loop = async () => {
   while (isRunning) {
       if (secondsLeft === 0 && minutesLeft === 0){
@@ -100,7 +90,15 @@ const timeToString = async (time) => {
 }
 
 const delay = async (milliseconds) => {
-    return new Promise(resolve => {
-        setTimeout(resolve, milliseconds);
-    });
+  return new Promise(resolve => {
+    setTimeout(resolve, milliseconds);
+  });
 }
+
+document.getElementById("start-button").addEventListener("click", start);
+document.getElementById("pause-button").addEventListener("click", pause);
+document.getElementById("reset-button").addEventListener("click", reset);
+
+document.getElementById("pomodoro-button").addEventListener("click", setPomodoroMode);
+document.getElementById("short-break-button").addEventListener("click", setShortBreakMode);
+document.getElementById("long-break-button").addEventListener("click", setLongBreakMode);
