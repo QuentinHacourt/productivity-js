@@ -24,33 +24,38 @@ const getItemDetails = async(id) => {
 }
 
 const writeItemDetails = async (todoItem) => {
-    const id = document.createElement("p");
-    id.innerText = `id: ${todoItem.id}`;
-    const title = document.createElement("p");
-    title.innerText = `title: ${todoItem.title}`;
-    const description = document.createElement("p");
-    description.innerText = `description: ${todoItem.description}`;
+  const id = document.createElement("p");
+  id.innerText = `id: ${todoItem.id}`;
+  const title = document.createElement("p");
+  title.innerText = `title: ${todoItem.title}`;
+  const description = document.createElement("p");
+  description.innerText = `description: ${todoItem.description}`;
 
-    document.getElementById("todo-item-details").replaceChildren();
-    document.getElementById("todo-item-details").appendChild(id);
-    document.getElementById("todo-item-details").appendChild(title);
-    document.getElementById("todo-item-details").appendChild(description);
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "delete";
+  deleteButton.addEventListener("click", () => { deleteTodoItem(todoItem.id) })
+
+  document.getElementById("todo-item-details").replaceChildren();
+  document.getElementById("todo-item-details").appendChild(id);
+  document.getElementById("todo-item-details").appendChild(title);
+  document.getElementById("todo-item-details").appendChild(description);
+  document.getElementById("todo-item-details").appendChild(deleteButton);
 }
 const addTodoItem = async () => {
-  // create item
   const item = {
     title: document.getElementsByName("title")[0].value,
     description: document.getElementsByName("description")[0].value,
   }
-
-  // add items to list
   todoList.addItem(item);
-
-  //refresh items list
   getAllTasks();
+}
+const deleteTodoItem = async (id) => {
+  todoList.deleteItem(id);
+
+  getAllTasks();
+
 }
 
 // run
-
 getAllTasks();
 document.getElementById("add-todo-item-button").addEventListener("click", addTodoItem)
