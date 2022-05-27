@@ -1,4 +1,4 @@
-export class TodoList {
+export class TodoService {
   constructor() {
     this.items = [
       {
@@ -56,7 +56,7 @@ export class TodoList {
   async getItem(id) {
     for (const i of this.items) {
       if (i.id === id) {
-        return i
+        return i;
       }
     }
   }
