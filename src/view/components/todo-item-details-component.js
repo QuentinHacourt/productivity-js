@@ -1,4 +1,4 @@
-export const TodoItemDetailsComponent = async(item) => {
+export const TodoItemDetailsComponent = async(item, deleteFunction) => {
   const id = document.createElement("p");
   id.innerText = `id: ${item.id}`;
   const title = document.createElement("p");
@@ -8,7 +8,7 @@ export const TodoItemDetailsComponent = async(item) => {
 
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "delete";
-  // deleteButton.addEventListener("click", () => { deleteTodoItem(item.id) })
+  deleteButton.addEventListener("click", () => { deleteFunction(item.id) })
 
   const div = document.createElement("div");
 

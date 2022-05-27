@@ -25,8 +25,8 @@ export class TodoController {
   async getTodoList() {
     return await TodoListComponent(await this.todoService.getAllItems());
   }
-  async getTodoDetails(id) {
-    return await TodoItemDetailsComponent(await this.todoService.getItem(id));
+  async getTodoDetails(id, deleteFunction) {
+    return await TodoItemDetailsComponent((await this.todoService.getItem(id)), deleteFunction);
   }
 
 }
