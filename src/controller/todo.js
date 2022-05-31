@@ -7,7 +7,6 @@ export class TodoController {
     this.todoService = new TodoService;
   }
 
-  // returns pure data
   async getItem(id){
     return this.todoService.getItem(id);
   }
@@ -21,7 +20,6 @@ export class TodoController {
     this.todoService.editItem(item);
   }
 
-  // returns components/list of components
   async getTodoList() {
     return await TodoListComponent(await this.todoService.getAllItems());
   }

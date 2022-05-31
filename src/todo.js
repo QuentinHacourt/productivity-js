@@ -3,16 +3,6 @@ import { TodoController } from "./controller/todo"
 const todoController = new TodoController();
 
 const getAllTasks = async() => {
-  //  todoList.getAllItems().then((todoList) => {
-  //   document.getElementById("todo-list").replaceChildren();
-  //   for (const item of todoList) {
-  //     const li = document.createElement("li");
-  //     li.innerText = `${item.id}: ${item.title}`;
-  //     li.addEventListener("click", getItemDetails);
-  //     document.getElementById("todo-list").appendChild(li);
-  //   }
-  // });
-
   const todoList = document.getElementById("todo-list");
   todoList.replaceChildren();
 
@@ -46,8 +36,6 @@ const deleteTodoItem = async (id) => {
   getAllTasks();
   document.getElementById("todo-item-details").replaceChildren();
 }
-
-
 
 // run
 getAllTasks();
