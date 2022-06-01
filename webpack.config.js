@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
+    timer: './src/timer.js',
     todo: './src/todo.js'
   },
   devtool: 'inline-source-map',

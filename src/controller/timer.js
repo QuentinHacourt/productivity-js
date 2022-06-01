@@ -1,10 +1,9 @@
+import { Timer } from "../model/timer"
+
 export class PomodoroController {
   constructor(printFunction) {
-    this.isRunning = false;
-    this.minutesLeft = 25;
-    this.secondsLeft = 0;
-    this.mode = 25;
     this.printFunction = printFunction;
+    this.timer = new Timer();
   }
 
   async setPomodoroMode() {
@@ -12,7 +11,7 @@ export class PomodoroController {
   }
 
   async setShortBreakMode() {
-    this.setMode(1);
+    this.setMode(5);
   }
 
   async setLongBreakMode() {
@@ -20,41 +19,39 @@ export class PomodoroController {
   }
 
   async setMode(mode) {
+    this.timer.setMode(mode);
     this.pause();
-    this.mode = mode;
-    this.minutesLeft = mode;
-    this.secondsLeft = 0;
     this.printTime();
   }
 
   async start() {
-    this.isRunning = true;
+    this.timer.isRunning = true;
     this.loop();
   }
 
   async pause() {
-    this.isRunning = false;
+    this.timer.isRunning = false;
   }
 
   async reset() {
-    this.setMode(this.mode);
+    this.setMode(this.timer.mode);
   }
 
   async printTime() {
-    await this.printFunction(`${await this.timeToString(this.minutesLeft)}:${await this.timeToString(this.secondsLeft)}`);
+    await this.printFunction(`${await this.timeToString(this.timer.minutesLeft)}:${await this.timeToString(this.timer.secondsLeft)}`);
   }
 
   async loop() {
-    while (this.isRunning) {
-      if (this.secondsLeft === 0 && this.minutesLeft === 0){
+    while (this.timer.isRunning) {
+      if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0){
         this.printFunction("Time is over!");
-        this.isRunning = false;
-      } else if (this.secondsLeft === 0){
-        this.minutesLeft--;
-        this.secondsLeft = 59;
+        this.timer.isRunning = false;
+      } else if (this.timer.secondsLeft === 0){
+        this.timer.minutesLeft--;
+        this.timer.secondsLeft = 59;
         this.printTime();
       } else {
-        this.secondsLeft--;
+        this.timer.secondsLeft--;
         this.printTime();
       }
       await this.delay(1000);

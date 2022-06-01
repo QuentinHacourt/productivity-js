@@ -1,23 +1,24 @@
-import { PomodoroController } from "./controller/pomodoro"
-
-
-const start = async () => {
-  document.getElementById("start-button").disabled = true;
-  document.getElementById("pause-button").disabled = false;
-  pomodoroController.start();
-}
+import { PomodoroController } from "./controller/timer"
 
 const setPomodoroMode = async () => {
   document.getElementById("pomodoro-button").disabled = true;
   document.getElementById("short-break-button").disabled = false;
   document.getElementById("long-break-button").disabled = false;
+
+  document.getElementById("start-button").disabled = false;
+  document.getElementById("pause-button").disabled = true;
+  document.getElementById("reset-button").disabled = true;
   pomodoroController.setPomodoroMode();
 }
-//
+
 const setShortBreakMode = async () => {
   document.getElementById("pomodoro-button").disabled = false;
   document.getElementById("short-break-button").disabled = true;
   document.getElementById("long-break-button").disabled = false;
+
+  document.getElementById("start-button").disabled = false;
+  document.getElementById("pause-button").disabled = true;
+  document.getElementById("reset-button").disabled = true;
   pomodoroController.setShortBreakMode();
 }
 
@@ -25,18 +26,31 @@ const setLongBreakMode = async () => {
   document.getElementById("pomodoro-button").disabled = false;
   document.getElementById("short-break-button").disabled = false;
   document.getElementById("long-break-button").disabled = true;
+
+  document.getElementById("start-button").disabled = false;
+  document.getElementById("pause-button").disabled = true;
+  document.getElementById("reset-button").disabled = true;
   pomodoroController.setLongBreakMode();
+}
+
+const start = async () => {
+  document.getElementById("start-button").disabled = true;
+  document.getElementById("pause-button").disabled = false;
+  document.getElementById("reset-button").disabled = false;
+  pomodoroController.start();
 }
 
 const pause = async () => {
   document.getElementById("start-button").disabled = false;
   document.getElementById("pause-button").disabled = true;
+  document.getElementById("reset-button").disabled = false;
   pomodoroController.pause();
 }
 
 const reset = async () => {
   document.getElementById("start-button").disabled = false;
   document.getElementById("pause-button").disabled = true;
+  document.getElementById("reset-button").disabled = true;
   pomodoroController.reset();
 }
 
