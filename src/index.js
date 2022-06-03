@@ -1,4 +1,5 @@
 import { TimerView } from "./view/timer.view"
+import { TodoView } from "./view/todo.view"
 
 const setupTimer = async() => {
   const timerView = new TimerView();
@@ -10,4 +11,10 @@ const setupTimer = async() => {
   document.getElementById("long-break-button").addEventListener("click", timerView.setLongBreakMode);
 }
 
+const setupTodo = async() => {
+  const todoView = new TodoView();
+  document.getElementById("add-todo-item-button").addEventListener("click", todoView.addTodoItem);
+}
+
 setupTimer();
+setupTodo();

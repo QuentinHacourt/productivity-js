@@ -11,6 +11,4 @@ export class TimerModel {
     this.minutesLeft = mode;
     this.secondsLeft = 0;
   }
-
-
 }

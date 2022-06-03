@@ -1,15 +1,15 @@
 import { TodoController } from "../controller/todo.controller"
-import { TodoListComponent } from "../view/components/todo-list-component"
-import { TodoItemDetailsComponent } from "./components/todo-item-details-component";
+import { TodoListComponent } from "../view/components/todo.list.component"
+import { TodoItemDetailsComponent } from "./components/todo.item.details.component";
 
 class TodoView {
   constructor() {
     this.todoController = new TodoController();
-    this.showAllTasks();
+    this.showAllTodoItems();
   }
 
 
-  showAllTasks = async() => {
+  showAllTodoItems = async() => {
     const todoList = document.getElementById("todo-list");
     todoList.replaceChildren();
 
@@ -40,12 +40,12 @@ class TodoView {
       description: document.getElementsByName("description")[0].value,
     }
     this.todoController.addItem(item);
-    this.showAllTasks();
+    this.showAllTodoItems();
   }
 
   deleteTodoItem = async(id) => {
     await this.todoController.deleteItem(id);
-    this.showAllTasks();
+    this.showAllTodoItems();
     document.getElementById("todo-item-details").replaceChildren();
   }
 }

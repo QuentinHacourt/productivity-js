@@ -1,33 +1,27 @@
-import { TodoService } from "../service/TodoService"
+import { TodoModel } from "../model/todo.model"
 
 export class TodoController {
   constructor() {
-    this.todoService = new TodoService;
+    this.todoModel = new TodoModel;
   }
 
   async getTodoItems() {
-    return await this.todoService.getAllItems();
+    return await this.todoModel.getAllItems();
   }
 
   async getTodoItem(id){
-    return this.todoService.getItem(id);
+    return this.todoModel.getItem(id);
   }
 
   async addItem(item) {
-    this.todoService.addItem(item);
+    this.todoModel.addItem(item);
   }
 
   async deleteItem(id) {
-    this.todoService.deleteItem(id);
+    this.todoModel.deleteItem(id);
   }
 
   async editItem(item){
-    this.todoService.editItem(item);
+    this.todoModel.editItem(item);
   }
-
-  async getTodoItem(id) {
-    // return await TodoItemDetailsComponent((await this.todoService.getItem(id)), deleteFunction);
-    return await this.todoService.getItem(id);
-  }
-
 }
