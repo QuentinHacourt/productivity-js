@@ -1,4 +1,4 @@
-export class Timer {
+export class TimerModel {
   constructor(){
     this.isRunning = false;
     this.minutesLeft = 25;
@@ -11,6 +11,4 @@ export class Timer {
     this.minutesLeft = mode;
     this.secondsLeft = 0;
   }
-
-
 }

@@ -1,4 +1,4 @@
-export class TodoService {
+export class TodoModel {
   constructor() {
     this.items = [
       {
@@ -25,8 +25,6 @@ export class TodoService {
       title: item.title,
       description: item.description,
     });
-
-
   }
 
   async deleteItem(id) {

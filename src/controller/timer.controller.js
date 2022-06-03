@@ -1,9 +1,9 @@
-import { Timer } from "../model/timer"
+import { TimerModel } from "../model/timer.model"
 
-export class PomodoroController {
+export class TimerController {
   constructor(printFunction) {
     this.printFunction = printFunction;
-    this.timer = new Timer();
+    this.timer = new TimerModel();
   }
 
   async setPomodoroMode() {
