@@ -1,10 +1,11 @@
 import { TodoController } from "../controller/todo.controller"
+import { TodoListComponent } from "../view/components/todo-list-component"
+import { TodoItemDetailsComponent } from "./components/todo-item-details-component";
 
 class TodoView {
   constructor() {
     this.todoController = new TodoController();
     this.showAllTasks();
-    // this.todoItemDetails = document.getElementById("todo-item-details");
   }
 
 
@@ -12,7 +13,11 @@ class TodoView {
     const todoList = document.getElementById("todo-list");
     todoList.replaceChildren();
 
-    (await this.todoController.getTodoList()).map((li) => {
+    const todoItems = await this.todoController.getTodoItems();
+    const todoComponent = await TodoListComponent(todoItems);
+
+
+    todoComponent.map((li) => {
       console.log(`list index id: ${li.id}`);
       li.addEventListener("click", ()=>{
         this.showItemDetails(parseInt(li.id));
@@ -22,10 +27,11 @@ class TodoView {
   }
 
   showItemDetails = async(id) => {
-    const todoItemDetails = await this.todoController.getTodoDetails(id, this.deleteTodoItem);
+    const todoItem = await this.todoController.getTodoItem(id);
+    const todoItemDetailsComponent = await TodoItemDetailsComponent(todoItem, this.deleteTodoItem);
     const d = document.getElementById("todo-item-details");
     d.replaceChildren();
-    d.appendChild(todoItemDetails);
+    d.appendChild(todoItemDetailsComponent);
   }
 
   addTodoItem = async() => {
@@ -38,11 +44,10 @@ class TodoView {
   }
 
   deleteTodoItem = async(id) => {
-    this.todoController.deleteItem(id);
-    this.getAllTasks();
+    await this.todoController.deleteItem(id);
+    this.showAllTasks();
     document.getElementById("todo-item-details").replaceChildren();
   }
-
 }
 
 export { TodoView }
