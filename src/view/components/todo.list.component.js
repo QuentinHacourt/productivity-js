@@ -3,8 +3,8 @@ export const TodoListComponent = async (todoList) => {
   todoList.map((item) => {
     const li = document.createElement("li");
     li.innerText = `${item.id}: ${item.title}`;
-    li.id = item.id
+    li.id = item.id;
     list.push(li);
   });
   return list;
-}
+};

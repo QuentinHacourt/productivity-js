@@ -1,4 +1,4 @@
-import { TimerModel } from "../model/timer.model"
+import { TimerModel } from "../model/timer.model";
 
 export class TimerController {
   constructor(printFunction) {
@@ -60,12 +60,12 @@ export class TimerController {
 
   async timeToString(time) {
     if (time < 10) {
-      return `0${time}`
+      return `0${time}`;
     }
-    return `${time}`
+    return `${time}`;
   }
 
-   async delay(milliseconds) {
+  async delay(milliseconds) {
     return new Promise(resolve => {
       setTimeout(resolve, milliseconds);
     });
