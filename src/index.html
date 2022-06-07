@@ -1,37 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Pomodoro Timer</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div id="pomodoro-app">
-            <h1>Pomodoro Timer</h1>
-            <div id="mode">
-                <button type="button" id="pomodoro-button" disabled>Pomodoro</button>
-                <button type="button" id="short-break-button">Short Break</button>
-                <button type="button" id="long-break-button">Long Break</button>
-            </div>
-            <div id="timer">
-                <p>25:00</p>
-            </div>
-            <button type="button" id="start-button">Start</button>
-            <button type="button" disabled id="pause-button">Pause</button>
-            <button type="button" id="reset-button">Reset</button>
+
+<head>
+    <title>Pomodoro Timer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="pomodoro-app" class="app">
+        <h1>Pomodoro Timer</h1>
+        <div id="mode">
+            <button type="button" id="pomodoro-button" disabled>Pomodoro</button>
+            <button type="button" id="short-break-button">Short Break</button>
+            <button type="button" id="long-break-button">Long Break</button>
         </div>
-        <div id="todo-app">
-            <h1>Todo App</h1>
-            <ul id="todo-list"></ul>
-            <div id="todo-item-details"></div>
-            <div id="todo-item-form">
-                <label for="title">title:</label>
-                <input type="text" name="title" id="title-input-field">
-                <label for="description">description:</label>
-                <input type="text" name="description" id="description-input-field">
-                <button type="button" id="add-todo-item-button" >add</button>
-            </div>
+        <div id="timer">
+            <p>25:00</p>
         </div>
-    </body>
+        <button type="button" id="start-button">Start</button>
+        <button type="button" disabled id="pause-button">Pause</button>
+        <button type="button" id="reset-button">Reset</button>
+    </div>
+    <div id="todo-app" class="app">
+        <h1>Todo App</h1>
+        <ul id="todo-list"></ul>
+        <div id="todo-item-details"></div>
+
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="title-input-field" name="title" placeholder="Title...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="description-input-field" name="description" placeholder="Task description..."
+                            style="height:200px"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="button" value="Add" id="add-todo-item-button">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
 </html>
