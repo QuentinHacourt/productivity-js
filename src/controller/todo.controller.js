@@ -1,4 +1,4 @@
-import { TodoModel } from "../model/todo.model"
+import { TodoModel } from "../model/todo.model";
 
 export class TodoController {
   constructor() {

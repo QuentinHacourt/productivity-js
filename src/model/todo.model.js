@@ -16,7 +16,7 @@ export class TodoModel {
         title: "third task",
         description: "this is the last task",
       },
-    ]
+    ];
   }
 
   async addItem(item) {

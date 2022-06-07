@@ -1,5 +1,5 @@
-import { TodoController } from "../controller/todo.controller"
-import { TodoListComponent } from "../view/components/todo.list.component"
+import { TodoController } from "../controller/todo.controller";
+import { TodoListComponent } from "../view/components/todo.list.component";
 import { TodoItemDetailsComponent } from "./components/todo.item.details.component";
 
 class TodoView {
@@ -23,8 +23,8 @@ class TodoView {
         this.showItemDetails(parseInt(li.id));
       });
       todoList.appendChild(li);
-    })
-  }
+    });
+  };
 
   showItemDetails = async(id) => {
     const todoItem = await this.todoController.getTodoItem(id);
@@ -32,22 +32,22 @@ class TodoView {
     const d = document.getElementById("todo-item-details");
     d.replaceChildren();
     d.appendChild(todoItemDetailsComponent);
-  }
+  };
 
   addTodoItem = async() => {
     const item = {
       title: document.getElementsByName("title")[0].value,
       description: document.getElementsByName("description")[0].value,
-    }
+    };
     this.todoController.addItem(item);
     this.showAllTodoItems();
-  }
+  };
 
   deleteTodoItem = async(id) => {
     await this.todoController.deleteItem(id);
     this.showAllTodoItems();
     document.getElementById("todo-item-details").replaceChildren();
-  }
+  };
 }
 
-export { TodoView }
+export { TodoView };
