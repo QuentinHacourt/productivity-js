@@ -1,5 +1,11 @@
+body {
+    background: url("./img/wall.jpg");
+    background-repeat: no-repeat;
+    background-size: cover cover;
+}
+
 .app {
-    border-style:double;
+    background-color: white;
     padding: 70px;
     padding-left: 100px;
     margin: 50px;
