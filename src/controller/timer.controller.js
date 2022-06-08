@@ -1,4 +1,6 @@
 import { TimerModel } from "../model/timer.model";
+import * as TimerService from "../service/local.storage.service"
+import { TimerMode } from "../model/timer.mode.model"
 
 export class TimerController {
   constructor(printFunction) {
@@ -7,15 +9,42 @@ export class TimerController {
   }
 
   async setPomodoroMode() {
-    this.setMode(25);
+    const time = await TimerService.Get(TimerMode.Pomodoro)
+    if (!time) {
+      this.setMode(25);
+      return;
+    }
+    this.setMode(time);
+  }
+
+  async setPomodoroTime(minutes) {
+    TimerService.Set(TimerMode.Pomodoro, minutes)
   }
 
   async setShortBreakMode() {
-    this.setMode(5);
+    const time = await TimerService.Get(TimerMode.ShortBreak)
+    if (!time) {
+      this.setMode(5);
+      return;
+    }
+    this.setMode(time);
+  }
+
+  async setShortBreakTime(minutes) {
+    TimerService.Set(TimerMode.ShortBreak, minutes)
   }
 
   async setLongBreakMode() {
-    this.setMode(15);
+    const time = await TimerService.Get(TimerMode.LongBreak)
+    if (!time) {
+      this.setMode(15);
+      return;
+    }
+    this.setMode(time);
+  }
+
+  async setShortShortTime(minutes) {
+    TimerService.Set(TimerMode.LongBreak, minutes)
   }
 
   async setMode(mode) {
@@ -43,10 +72,10 @@ export class TimerController {
 
   async loop() {
     while (this.timer.isRunning) {
-      if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0){
+      if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0) {
         this.printFunction("Time is over!");
         this.timer.isRunning = false;
-      } else if (this.timer.secondsLeft === 0){
+      } else if (this.timer.secondsLeft === 0) {
         this.timer.minutesLeft--;
         this.timer.secondsLeft = 59;
         this.printTime();
@@ -69,5 +98,11 @@ export class TimerController {
     return new Promise(resolve => {
       setTimeout(resolve, milliseconds);
     });
+  }
+
+  async setTimerSettings(pomodoroTime, shortBreakTime, longBreakTime) {
+    TimerService.Set(TimerMode.Pomodoro, pomodoroTime);
+    TimerService.Set(TimerMode.ShortBreak, shortBreakTime);
+    TimerService.Set(TimerMode.LongBreak, longBreakTime);
   }
 }

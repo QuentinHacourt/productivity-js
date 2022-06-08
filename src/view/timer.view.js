@@ -1,8 +1,15 @@
 import { TimerController } from "../controller/timer.controller";
 
 class TimerView {
-  constructor(){
+  constructor() {
     this.timerController = new TimerController(this.printMessage);
+    document.getElementById("start-button").addEventListener("click", this.start);
+    document.getElementById("pause-button").addEventListener("click", this.pause);
+    document.getElementById("reset-button").addEventListener("click", this.reset);
+    document.getElementById("pomodoro-button").addEventListener("click", this.setPomodoroMode);
+    document.getElementById("short-break-button").addEventListener("click", this.setShortBreakMode);
+    document.getElementById("long-break-button").addEventListener("click", this.setLongBreakMode);
+    document.getElementById("set-timer-settings").addEventListener("click", this.setTimerSettings);
   }
 
   setPomodoroMode = async () => {
@@ -65,6 +72,14 @@ class TimerView {
     timerData.innerText = `${message}`;
     timer.innerHTML = "";
     timer.appendChild(timerData);
+  };
+
+  setTimerSettings = async () => {
+    const pomodoroTime = document.getElementById("pomodoro-time-field").value;
+    const shortBreakTime = document.getElementById("short-break-time-field").value;
+    const LongBreakTime = document.getElementById("long-break-time-field").value;
+
+    this.timerController.setTimerSettings(pomodoroTime, shortBreakTime, LongBreakTime);
   };
 }
 
