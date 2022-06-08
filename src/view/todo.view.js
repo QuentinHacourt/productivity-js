@@ -6,10 +6,11 @@ class TodoView {
   constructor() {
     this.todoController = new TodoController();
     this.showAllTodoItems();
+    document.getElementById("add-todo-item-button").addEventListener("click", this.addTodoItem);
   }
 
 
-  showAllTodoItems = async() => {
+  showAllTodoItems = async () => {
     const todoList = document.getElementById("todo-list");
     todoList.replaceChildren();
 
@@ -19,14 +20,14 @@ class TodoView {
 
     todoComponent.map((li) => {
       console.log(`list index id: ${li.id}`);
-      li.addEventListener("click", ()=>{
+      li.addEventListener("click", () => {
         this.showItemDetails(parseInt(li.id));
       });
       todoList.appendChild(li);
     });
   };
 
-  showItemDetails = async(id) => {
+  showItemDetails = async (id) => {
     const todoItem = await this.todoController.getTodoItem(id);
     const todoItemDetailsComponent = await TodoItemDetailsComponent(todoItem, this.deleteTodoItem);
     const d = document.getElementById("todo-item-details");
@@ -34,7 +35,7 @@ class TodoView {
     d.appendChild(todoItemDetailsComponent);
   };
 
-  addTodoItem = async() => {
+  addTodoItem = async () => {
     const item = {
       title: document.getElementsByName("title")[0].value,
       description: document.getElementsByName("description")[0].value,
@@ -43,7 +44,7 @@ class TodoView {
     this.showAllTodoItems();
   };
 
-  deleteTodoItem = async(id) => {
+  deleteTodoItem = async (id) => {
     await this.todoController.deleteItem(id);
     this.showAllTodoItems();
     document.getElementById("todo-item-details").replaceChildren();

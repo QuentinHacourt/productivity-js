@@ -99,4 +99,10 @@ export class TimerController {
       setTimeout(resolve, milliseconds);
     });
   }
+
+  async setTimerSettings(pomodoroTime, shortBreakTime, longBreakTime) {
+    TimerService.Set(TimerMode.Pomodoro, pomodoroTime);
+    TimerService.Set(TimerMode.ShortBreak, shortBreakTime);
+    TimerService.Set(TimerMode.LongBreak, longBreakTime);
+  }
 }

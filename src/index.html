@@ -22,6 +22,41 @@
         <button type="button" id="start-button">Start</button>
         <button type="button" disabled id="pause-button">Pause</button>
         <button type="button" id="reset-button">Reset</button>
+
+        <form>
+            <div id="row">
+                <h2>
+                    Timer Options
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="pomodoro-time">Pomodoro Time</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" id="pomodoro-time-field" name="pomodoro-time">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="short-break-time">Short Break Time</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" id="short-break-time-field" name="short-break-time">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="long-break-time">Long Break Time</label>
+                </div>
+                <div class="col-75">
+                    <input type="number" id="long-break-time-field" name="long-break-time">
+                </div>
+            </div>
+            <div class="row">
+                <input type="button" value="Set" id="set-timer-settings">
+            </div>
+        </form>
     </div>
 
     <div id="todo-app" class="app">
