@@ -10,6 +10,8 @@ class TimerView {
     document.getElementById("short-break-button").addEventListener("click", this.setShortBreakMode);
     document.getElementById("long-break-button").addEventListener("click", this.setLongBreakMode);
     document.getElementById("set-timer-settings").addEventListener("click", this.setTimerSettings);
+    document.getElementById("timer-settings-cancel-button").addEventListener("click", this.closePopup);
+    document.getElementById("settings-button").addEventListener("click", this.openPopup);
   }
 
   setPomodoroMode = async () => {
@@ -80,6 +82,18 @@ class TimerView {
     const LongBreakTime = document.getElementById("long-break-time-field").value;
 
     this.timerController.setTimerSettings(pomodoroTime, shortBreakTime, LongBreakTime);
+    this.closePopup()
+  };
+
+  openPopup = async () => {
+    document.getElementById("pomodoro-time-field").value = await this.timerController.getPomodoroTime();
+    document.getElementById("short-break-time-field").value = await this.timerController.getShortBreakTime();
+    document.getElementById("long-break-time-field").value = await this.timerController.getLongBreakTime();
+    document.getElementById("myForm").style.display = "block";
+  };
+
+  closePopup = async () => {
+    document.getElementById("myForm").style.display = "none";
   };
 }
 

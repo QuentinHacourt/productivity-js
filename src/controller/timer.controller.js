@@ -105,4 +105,28 @@ export class TimerController {
     TimerService.Set(TimerMode.ShortBreak, shortBreakTime);
     TimerService.Set(TimerMode.LongBreak, longBreakTime);
   }
+
+  async getPomodoroTime() {
+    const time = await TimerService.Get(TimerMode.Pomodoro);
+    if (!time) {
+      return 25;
+    }
+    return time;
+  }
+
+  async getShortBreakTime() {
+    const time = await TimerService.Get(TimerMode.ShortBreak);
+    if (!time) {
+      return 5;
+    }
+    return time;
+  }
+
+  async getLongBreakTime() {
+    const time = await TimerService.Get(TimerMode.LongBreak);
+    if (!time) {
+      return 15;
+    }
+    return time;
+  }
 }
