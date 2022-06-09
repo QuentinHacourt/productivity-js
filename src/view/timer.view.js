@@ -82,7 +82,7 @@ class TimerView {
     const LongBreakTime = document.getElementById("long-break-time-field").value;
 
     this.timerController.setTimerSettings(pomodoroTime, shortBreakTime, LongBreakTime);
-    this.closePopup()
+    this.closePopup();
   };
 
   openPopup = async () => {
