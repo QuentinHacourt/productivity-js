@@ -1,6 +1,6 @@
 import { TimerController } from "../controller/timer.controller";
 import clickSoundFile from "../assets/sound/click.mp3";
-import ringSoundFile from "../assets/sound/ring.mp3"
+import ringSoundFile from "../assets/sound/ring.mp3";
 
 class TimerView {
   constructor() {
