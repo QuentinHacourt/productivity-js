@@ -1,6 +1,6 @@
 import { TimerModel } from "../model/timer.model";
-import * as TimerService from "../service/local.storage.service"
-import { TimerMode } from "../model/timer.mode.model"
+import * as TimerService from "../service/local.storage.service";
+import { TimerMode } from "../model/timer.mode.model";
 
 export class TimerController {
   constructor(printFunction) {
@@ -9,7 +9,7 @@ export class TimerController {
   }
 
   async setPomodoroMode() {
-    const time = await TimerService.Get(TimerMode.Pomodoro)
+    const time = await TimerService.Get(TimerMode.Pomodoro);
     if (!time) {
       this.setMode(25);
       return;
@@ -18,11 +18,11 @@ export class TimerController {
   }
 
   async setPomodoroTime(minutes) {
-    TimerService.Set(TimerMode.Pomodoro, minutes)
+    TimerService.Set(TimerMode.Pomodoro, minutes);
   }
 
   async setShortBreakMode() {
-    const time = await TimerService.Get(TimerMode.ShortBreak)
+    const time = await TimerService.Get(TimerMode.ShortBreak);
     if (!time) {
       this.setMode(5);
       return;
@@ -31,11 +31,11 @@ export class TimerController {
   }
 
   async setShortBreakTime(minutes) {
-    TimerService.Set(TimerMode.ShortBreak, minutes)
+    TimerService.Set(TimerMode.ShortBreak, minutes);
   }
 
   async setLongBreakMode() {
-    const time = await TimerService.Get(TimerMode.LongBreak)
+    const time = await TimerService.Get(TimerMode.LongBreak);
     if (!time) {
       this.setMode(15);
       return;
@@ -44,7 +44,7 @@ export class TimerController {
   }
 
   async setShortShortTime(minutes) {
-    TimerService.Set(TimerMode.LongBreak, minutes)
+    TimerService.Set(TimerMode.LongBreak, minutes);
   }
 
   async setMode(mode) {

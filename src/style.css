@@ -1,6 +1,6 @@
 @font-face {
     font-family: "montserrat";
-    src: url("./fonts/Montserrat-Regular.otf");
+    src: url("./assets/fonts/Montserrat-Regular.otf");
 }
 
 html {
@@ -8,7 +8,7 @@ html {
 }
 
 body {
-    background: url("./img/wall.jpg");
+    background: url("./assets/img/wall.jpg");
     background-repeat: no-repeat;
     background-size: cover cover;
 }

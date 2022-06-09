@@ -5,10 +5,10 @@ const Set = async (key, value) => {
     console.error(error);
     throw error;
   }
-}
+};
 
 const Get = async (key) => {
   return localStorage.getItem(key);
-}
+};
 
-export { Set, Get }
+export { Set, Get };
