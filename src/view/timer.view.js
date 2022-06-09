@@ -1,8 +1,10 @@
 import { TimerController } from "../controller/timer.controller";
+import clickSoundFile from "../assets/sound/click.mp3";
+import ringSoundFile from "../assets/sound/ring.mp3";
 
 class TimerView {
   constructor() {
-    this.timerController = new TimerController(this.printMessage);
+    this.timerController = new TimerController(this.printMessage, this.playRingSound);
     document.getElementById("start-button").addEventListener("click", this.start);
     document.getElementById("pause-button").addEventListener("click", this.pause);
     document.getElementById("reset-button").addEventListener("click", this.reset);
@@ -15,6 +17,7 @@ class TimerView {
   }
 
   setPomodoroMode = async () => {
+    this.playClickSound();
     document.getElementById("pomodoro-button").disabled = true;
     document.getElementById("short-break-button").disabled = false;
     document.getElementById("long-break-button").disabled = false;
@@ -26,6 +29,7 @@ class TimerView {
   };
 
   setShortBreakMode = async () => {
+    this.playClickSound();
     document.getElementById("pomodoro-button").disabled = false;
     document.getElementById("short-break-button").disabled = true;
     document.getElementById("long-break-button").disabled = false;
@@ -37,6 +41,7 @@ class TimerView {
   };
 
   setLongBreakMode = async () => {
+    this.playClickSound();
     document.getElementById("pomodoro-button").disabled = false;
     document.getElementById("short-break-button").disabled = false;
     document.getElementById("long-break-button").disabled = true;
@@ -48,6 +53,7 @@ class TimerView {
   };
 
   start = async () => {
+    this.playClickSound();
     document.getElementById("start-button").disabled = true;
     document.getElementById("pause-button").disabled = false;
     document.getElementById("reset-button").disabled = false;
@@ -55,6 +61,7 @@ class TimerView {
   };
 
   pause = async () => {
+    this.playClickSound();
     document.getElementById("start-button").disabled = false;
     document.getElementById("pause-button").disabled = true;
     document.getElementById("reset-button").disabled = false;
@@ -62,6 +69,7 @@ class TimerView {
   };
 
   reset = async () => {
+    this.playClickSound();
     document.getElementById("start-button").disabled = false;
     document.getElementById("pause-button").disabled = true;
     document.getElementById("reset-button").disabled = true;
@@ -86,6 +94,7 @@ class TimerView {
   };
 
   openPopup = async () => {
+    this.playClickSound();
     document.getElementById("pomodoro-time-field").value = await this.timerController.getPomodoroTime();
     document.getElementById("short-break-time-field").value = await this.timerController.getShortBreakTime();
     document.getElementById("long-break-time-field").value = await this.timerController.getLongBreakTime();
@@ -93,7 +102,18 @@ class TimerView {
   };
 
   closePopup = async () => {
+    this.playClickSound();
     document.getElementById("myForm").style.display = "none";
+  };
+
+  playClickSound = async () => {
+    const clickSound = new Audio(clickSoundFile);
+    clickSound.play();
+  };
+
+  playRingSound = async () => {
+    const ringSound = new Audio(ringSoundFile);
+    ringSound.play();
   };
 }
 

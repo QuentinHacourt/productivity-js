@@ -3,7 +3,8 @@ import * as TimerService from "../service/local.storage.service";
 import { TimerMode } from "../model/timer.mode.model";
 
 export class TimerController {
-  constructor(printFunction) {
+  constructor(printFunction, timerDoneSound) {
+    this.timerDoneSound = timerDoneSound;
     this.printFunction = printFunction;
     this.timer = new TimerModel();
   }
@@ -74,6 +75,7 @@ export class TimerController {
     while (this.timer.isRunning) {
       if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0) {
         this.printFunction("Time is over!");
+        this.timerDoneSound();
         this.timer.isRunning = false;
       } else if (this.timer.secondsLeft === 0) {
         this.timer.minutesLeft--;
