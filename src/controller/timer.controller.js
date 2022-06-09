@@ -76,7 +76,6 @@ export class TimerController {
       if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0) {
         this.printFunction("Time is over!");
         this.timerDoneSound();
-
         this.timer.isRunning = false;
       } else if (this.timer.secondsLeft === 0) {
         this.timer.minutesLeft--;
