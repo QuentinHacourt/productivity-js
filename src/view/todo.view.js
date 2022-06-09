@@ -1,6 +1,7 @@
 import { TodoController } from "../controller/todo.controller";
 import { TodoListComponent } from "../view/components/todo.list.component";
 import { TodoItemDetailsComponent } from "./components/todo.item.details.component";
+import clickSoundFile from "../assets/sound/click.mp3";
 
 class TodoView {
   constructor() {
@@ -19,7 +20,6 @@ class TodoView {
 
 
     todoComponent.map((li) => {
-      console.log(`list index id: ${li.id}`);
       li.addEventListener("click", () => {
         this.showItemDetails(parseInt(li.id));
       });
@@ -36,6 +36,7 @@ class TodoView {
   };
 
   addTodoItem = async () => {
+    this.playClickSound();
     const item = {
       title: document.getElementsByName("title")[0].value,
       description: document.getElementsByName("description")[0].value,
@@ -45,9 +46,15 @@ class TodoView {
   };
 
   deleteTodoItem = async (id) => {
+    this.playClickSound();
     await this.todoController.deleteItem(id);
     this.showAllTodoItems();
     document.getElementById("todo-item-details").replaceChildren();
+  };
+
+  playClickSound = async () => {
+    const clickSound = new Audio(clickSoundFile);
+    clickSound.play();
   };
 }
 
