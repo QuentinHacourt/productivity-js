@@ -4,7 +4,8 @@ import ringSoundFile from "../assets/sound/ring.mp3";
 
 class TimerView {
   constructor() {
-    this.timerController = new TimerController(this.printMessage, this.playRingSound);
+    this.timerController = new TimerController(this.printMessage, this.playRingSound, this);
+    this.setPomodoroMode();
     document.getElementById("start-button").addEventListener("click", this.start);
     document.getElementById("pause-button").addEventListener("click", this.pause);
     document.getElementById("reset-button").addEventListener("click", this.reset);

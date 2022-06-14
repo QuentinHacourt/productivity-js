@@ -3,19 +3,15 @@ import * as TimerService from "../service/local.storage.service";
 import { TimerMode } from "../model/timer.mode.model";
 
 export class TimerController {
-  constructor(printFunction, timerDoneSound) {
+  constructor(printFunction, timerDoneSound, timerView) {
     this.timerDoneSound = timerDoneSound;
     this.printFunction = printFunction;
     this.timer = new TimerModel();
+    this.timerView = timerView;
   }
 
   async setPomodoroMode() {
-    const time = await TimerService.Get(TimerMode.Pomodoro);
-    if (!time) {
-      this.setMode(25);
-      return;
-    }
-    this.setMode(time);
+    this.setMode(TimerMode.Pomodoro);
   }
 
   async setPomodoroTime(minutes) {
@@ -23,12 +19,7 @@ export class TimerController {
   }
 
   async setShortBreakMode() {
-    const time = await TimerService.Get(TimerMode.ShortBreak);
-    if (!time) {
-      this.setMode(5);
-      return;
-    }
-    this.setMode(time);
+    this.setMode(TimerMode.ShortBreak);
   }
 
   async setShortBreakTime(minutes) {
@@ -36,20 +27,15 @@ export class TimerController {
   }
 
   async setLongBreakMode() {
-    const time = await TimerService.Get(TimerMode.LongBreak);
-    if (!time) {
-      this.setMode(15);
-      return;
-    }
-    this.setMode(time);
+    this.setMode(TimerMode.LongBreak);
   }
 
-  async setShortShortTime(minutes) {
+  async setLongBreakTime(minutes) {
     TimerService.Set(TimerMode.LongBreak, minutes);
   }
 
   async setMode(mode) {
-    this.timer.setMode(mode);
+    await this.timer.setMode(mode);
     this.pause();
     this.printTime();
   }
@@ -74,6 +60,7 @@ export class TimerController {
   async loop() {
     while (this.timer.isRunning) {
       if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0) {
+        this.switchMode();
         this.printFunction("Time is over!");
         this.timerDoneSound();
         this.timer.isRunning = false;
@@ -87,6 +74,20 @@ export class TimerController {
       }
       await this.delay(1000);
     }
+  }
+
+  async switchMode() {
+    console.log(this.timer.getMode())
+    if (this.timer.getMode() == TimerMode.Pomodoro) {
+      this.timer.incrementPomodoroCount();
+      if (this.timer.isLongBreak()) {
+        this.timerView.setLongBreakMode();
+        return;
+      }
+      this.timerView.setShortBreakMode();
+      return;
+    }
+    this.timerView.setPomodoroMode();
   }
 
   async timeToString(time) {
