@@ -61,7 +61,6 @@ export class TimerController {
     while (this.timer.isRunning) {
       if (this.timer.secondsLeft === 0 && this.timer.minutesLeft === 0) {
         this.switchMode();
-
         this.printFunction("Time is over!");
         this.timerDoneSound();
         this.timer.isRunning = false;
@@ -73,7 +72,7 @@ export class TimerController {
         this.timer.secondsLeft--;
         this.printTime();
       }
-      await this.delay(10);
+      await this.delay(1000);
     }
   }
 
