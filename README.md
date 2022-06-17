@@ -12,6 +12,12 @@ For now it only has a pomodoro timer application.
 
 A simple timer application. The user can choose between three modes for now:
 
-- Pomodoro: a 25 minute timer where you are supposed to do focused work
-- Short break: a 5 minute timer where you are supposed to take a break
-- Long break: a 15 minute timer where you are supposed to take a break
+- Pomodoro: a timer where you are supposed to do focused work
+- Short break: a timer where you are supposed to take a short break
+- Long break: a timer where you are supposed to take a longer break
+
+The length of each mode can be set up by the user in the settings menu.
+
+## TODO List
+
+A simple todo list application. The user can view the tasks he has to perform, see the details of said tasks, delete these tasks and add new ones.
